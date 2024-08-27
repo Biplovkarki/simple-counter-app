@@ -1,15 +1,33 @@
 import Head from "next/head";
 import { useState } from "react";
-
+import MyButton from "./my-button";
+import { useHtmlContext } from "next/dist/shared/lib/html-context.shared-runtime";
+const max_count =30;
+const min_count=-10;
 export default function Home() {
 const [count, setCount] =useState(0);
-
+const[name, setName] =useState("");
 const increaseCounter = () => {
+  if(count >=max_count){
+    alert("max counter reached");
+    return;
+  }
+
 setCount(count + 1 );
 }
 const decreaseCounter = () => {
+  if(count <= min_count){
+    alert("min counter reached");
+    return;
+  }
   setCount(count - 1 );
   }
+const changeName =(e)=>{
+ const value=e.target.value;
+ setName(Number(value));
+  
+}
+  
   return (
     <>
       <Head>
@@ -19,9 +37,15 @@ const decreaseCounter = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        
       <h1 className="heading"> hello {count}</h1>
+      <h1 className="name">hello,{name} </h1>
+      <div class="button">
+      <input type="text" id=" name" value={name} onChange={changeName} placeholder="enter your name"/>
       <button onClick={increaseCounter}>increase count</button>
       <button onClick={decreaseCounter}>decrease count</button>
+      <MyButton text="hello" onInput={increaseCounter}/>
+      </div>
       </main>
     </>
   );
