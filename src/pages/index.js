@@ -45,6 +45,8 @@ const changeName =(e)=>{
       <button onClick={increaseCounter}>increase count</button>
       <button onClick={decreaseCounter}>decrease count</button>
       <MyButton text="hello" onInput={increaseCounter}/>
+      <MyButton text="hello" onInput={increaseCounter}/>
+
       </div>
       </main>
     </>
