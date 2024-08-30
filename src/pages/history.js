@@ -6,6 +6,9 @@ function HistoryItem({count}){
     )
 }
 export default function History({history}){
+    if(!history.length){
+        return<></>
+    }
     return (
         <div>
         <h1>History</h1>
