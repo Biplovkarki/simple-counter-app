@@ -2,30 +2,65 @@ import Head from "next/head";
 import { useState } from "react";
 import MyButton from "./my-button";
 import { useHtmlContext } from "next/dist/shared/lib/html-context.shared-runtime";
+import History from "./history";
 const max_count =30;
 const min_count=-10;
+
 export default function Home() {
 const [count, setCount] =useState(0);
-const[name, setName] =useState("");
+const [tempcount, tempsetCount] =useState(null);
+const [history,setHistory]= useState([]);
+
+
+//const[name, setName] =useState("");
 const increaseCounter = () => {
   if(count >=max_count){
     alert("max counter reached");
     return;
   }
-
+ 
+  setHistory([...history,count]);
+  console.log(history);
 setCount(count + 1 );
-}
+};
+
 const decreaseCounter = () => {
   if(count <= min_count){
     alert("min counter reached");
     return;
   }
+  setHistory([...history,count]);
+  console.log(history);
   setCount(count - 1 );
+  };
+
+  const handleInput =(e)=>{
+    const value=e.target.value;
+    tempsetCount(Number(value));
   }
-const changeName =(e)=>{
- const value=e.target.value;
- setName(Number(value));
+// const changeName =(e)=>{
+//  const value=e.target.value;
+//  setName(Number(value));
   
+
+// }
+const handleReset = () =>{
+  setHistory([...history,count]);
+  console.log(history);
+  setCount(tempcount);
+}
+
+const undofuction=()=>{
+  if(history.length===0)return;
+  const lastElementIndex=history.length-1;
+// const lastElement =history.slice(lastElementIndex);
+// setCount(lastElement[0]);
+setCount(history[lastElementIndex]);
+const newHistory =history.slice(0,lastElementIndex);
+
+setHistory(newHistory);
+console.log(newHistory);
+
 }
   
   return (
@@ -39,15 +74,28 @@ const changeName =(e)=>{
       <main>
         
       <h1 className="heading"> hello {count}</h1>
-      <h1 className="name">hello,{name} </h1>
-      <div class="button">
-      <input type="text" id=" name" value={name} onChange={changeName} placeholder="enter your name"/>
+{/* <h1 className="name">hello,{name} </h1> */}
+     
+      {/* <input type="text" id=" name" value={name} onChange={changeName} placeholder="enter your name"/> */}
       <button onClick={increaseCounter}>increase count</button>
-      <button onClick={decreaseCounter}>decrease count</button>
+      <button 
+     
+      onClick={decreaseCounter}>decrease count</button>
       <MyButton text="hello" onInput={increaseCounter}/>
-      <MyButton text="hello" onInput={increaseCounter}/>
-
-      </div>
+      <input onInput={handleInput}/>
+      <MyButton text="reset" 
+   
+      onClick={handleReset}/>
+      <MyButton text="undo" 
+     onClick={
+          undofuction
+        }
+   />
+<History 
+history ={history}
+/>
+  
+    
       </main>
     </>
   );
