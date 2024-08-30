@@ -3,6 +3,7 @@ import { useState } from "react";
 import MyButton from "./my-button";
 import { useHtmlContext } from "next/dist/shared/lib/html-context.shared-runtime";
 import History from "./history";
+import { TodoList } from "./todolist";
 const max_count =30;
 const min_count=-10;
 
@@ -94,7 +95,7 @@ console.log(newHistory);
 <History 
 history ={history}
 />
-  
+  <TodoList/>
     
       </main>
     </>
