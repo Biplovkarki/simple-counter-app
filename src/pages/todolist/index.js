@@ -10,14 +10,34 @@ import { useState } from "react";
 export function TodoList (task){
     const [tasks,setTasks]=useState([]);
     const [inputTask,setinputTask]=useState(null);
+    //const [temptasks,settemptasks]=useState(null);
+
     const handleInputTask=(e)=>{
      setinputTask(e.target.value);
     
     }
     const addnewtask=()=>{
-        setTasks([...tasks,inputTask]);
-        
-  
+        if(inputTask.length!==0){
+            setTasks([...tasks,inputTask]);
+            return;
+        }   
+
+    }
+    
+    const removeHandler =()=>{
+    
+        if(tasks.length===0)return;
+        const lastElementIndex=tasks.length-1;
+      // const lastElement =history.slice(lastElementIndex);
+      // setCount(lastElement[0]);
+      setTasks(tasks[lastElementIndex]);
+      const newTasks =tasks.slice(0,lastElementIndex);
+      
+      setTasks(newTasks);
+     
+    }
+    const completeHandler=()=>{
+
     }
   
     return (
@@ -34,7 +54,9 @@ export function TodoList (task){
          {tasks.map((b) => {
            return(
           <li>
-            {b}
+            <span> {b}</span>
+            <button onClick={removeHandler}>remove</button>
+            <button onClick={completeHandler}> Complete</button>
             </li>
            // <listsTodo task={b}/>
            

@@ -4,6 +4,8 @@ import MyButton from "./my-button";
 import { useHtmlContext } from "next/dist/shared/lib/html-context.shared-runtime";
 import History from "./history";
 import { TodoList } from "./todolist";
+import { BackgroundChanger } from "./background-changer";
+import { DropDown } from "./dropDown";
 const max_count =30;
 const min_count=-10;
 
@@ -96,8 +98,10 @@ console.log(newHistory);
 history ={history}
 />
   <TodoList/>
-    
+  <BackgroundChanger/>
+  <DropDown/>
       </main>
     </>
+    
   );
 }
