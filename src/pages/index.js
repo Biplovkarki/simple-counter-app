@@ -6,6 +6,8 @@ import History from "./history";
 import { TodoList } from "./todolist";
 import { BackgroundChanger } from "./background-changer";
 import { DropDown } from "./dropDown";
+import InputTypes from "./input";
+import RefsDemo from "./refs-demo";
 const max_count =30;
 const min_count=-10;
 
@@ -101,6 +103,9 @@ history ={history}
   <BackgroundChanger/>
   <DropDown/>
       </main>
+     <InputTypes/>
+     <RefsDemo/>
+
     </>
     
   );
