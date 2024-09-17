@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MyButton from "./my-button";
 import { useHtmlContext } from "next/dist/shared/lib/html-context.shared-runtime";
 import History from "./history";
@@ -54,7 +54,9 @@ const handleReset = () =>{
   console.log(history);
   setCount(tempcount);
 }
-
+useEffect=()=>{
+  setHistory([...history,count]); 
+}
 const undofuction=()=>{
   if(history.length===0)return;
   const lastElementIndex=history.length-1;
